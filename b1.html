@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1px" width="100%">
+    <tr>
+        <td>nhập vào chiều rộng:</td>
+        <td><input type="text" id="weight"></td>
+    </tr>
+    <tr>
+        <td>nhập vào chiều cao:</td>
+        <td><input type="text" id="height"></td>
+    </tr>
+    <tr>
+        <td>Area of Rectangle:</td>
+        <td><p id="area"></p></td>
+    </tr>
+    <tr>
+        <td>Perimeter of Rectangle</td>
+        <td><p id="perimeter"></p></td>
+    </tr>
+    <tr>
+        <td><button onclick="result()">show Result</button></td>
+        <td> <button onclick="reset()">Reset</button></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <canvas id="myCanvas" style="border:1px sandybrown"width="1000px"height="600px"></canvas>
+        </td>
+    </tr>
+</table>
+<script>
+    class recTangle {
+        weight;
+        height;
+        constructor(weight,height) {
+            this.weight=weight;
+            this.height=height;
+        }
+        getWeight(){
+                return this.weight;
+        }
+        setWeight(value){
+            this.weight=value;
+        }
+        getHeight(){
+            return this.height;
+        }
+        setHeight(value){
+            this.height=value;
+        }
+        getPerimeter(){
+            return 2*(this.height+this.weight)
+        }
+        getArea(){
+            return (this.height*this.weight)
+        }
+    }
+    function result() {
+        console.log('Running')
+        let weight = +document.getElementById('weight').value
+        let height = +document.getElementById('height').value
+        let rectangle = new recTangle(weight,height);
+        let area = rectangle.getArea();
+        let perimeter = rectangle.getPerimeter();
+        document.getElementById('area').innerHTML=area;
+        document.getElementById('perimeter').innerHTML=perimeter;
+        let canvas = document.getElementById('myCanvas')
+        let ctx = canvas.getContext('2d')
+        ctx.fillRect(0,0,weight,height)
+    }
+    function reset() {
+        document.getElementById('area').innerHTML='';
+        document.getElementById('perimeter').innerHTML='';
+        document.getElementById('weight').value='';
+        document.getElementById('height').value='';
+        let canvas = document.getElementById('myCanvas')
+        let ctx = canvas.getContext('2d')
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+    }
+</script>
+</body>
+</html>
